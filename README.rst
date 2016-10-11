@@ -16,14 +16,14 @@ Navigation on the site using flat pages, URL patterns and Views
         'site_navigation'
     )
 
--  add "site\_navigation.context\_processors.getNavigationProperties" to
+-  add "site\_navigation.context\_processors.get_navigation_properties" to
    your TEMPLATE\_CONTEXT\_PROCESSORS:
 
 .. code:: python
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...
-        'site_navigation.context_processors.getNavigationProperties'
+        'site_navigation.context_processors.get_navigation_properties'
     )
 
 -  add "site\_navigation.middleware.RedirectMiddleware" to your
@@ -40,8 +40,8 @@ Navigation on the site using flat pages, URL patterns and Views
 
 .. code:: python
 
-    from navigation.utils import addUrl
-    urlpatterns += addUrl('default_page.html')
+    from navigation.utils import navigation_urls
+    urlpatterns += navigation_urls('default_page.html')
 
 -  create table:
 
@@ -104,7 +104,7 @@ menu.html
 
         {% for sub in subdivisions|dictsortreversed:"priority" %}
             <li {% if sub == NAVIGATION_SUBDIVISION %} class="active" {% endif %}>
-                <a href="{{ sub.getUrl }}" >
+                <a href="{{ sub.get_url }}" >
                     {{ sub }}
                 </a>
             </li>
@@ -119,7 +119,7 @@ breadcrumbs.html
             <li><a href="/">Home</a></li>
             {% for s in NAVIGATION_BRANCH %}
                 <li>{% if not forloop.last %}
-                        <a href="{{ s.getUrl }}">{{ s.name }}</a>
+                        <a href="{{ s.get_url }}">{{ s.name }}</a>
                      {% else %}
                         {{ s.name }}
                      {% endif %}

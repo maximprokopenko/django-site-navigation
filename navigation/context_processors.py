@@ -2,9 +2,9 @@
 from .models import Subdivision
 
 
-def reversePath(request, path, branch):
+def reverse_path(request, path, branch):
     '''
-    Функция возвращает объект Subdivision по url с учетом вложенности
+    The function finds Subdivision from url
     '''
     try:
         if len(path):
@@ -14,25 +14,25 @@ def reversePath(request, path, branch):
         sub = Subdivision.objects.get(address=address, parent=branch[-1] if len(branch) else None)
         branch.append(sub)
     except Subdivision.DoesNotExist:
-        # ситуация когда на каком-то шаге не нашли Subdivision
+        # if Subdivision no found
         return branch
 
     if len(branch) and not len(path):
         return branch
 
     if sub and len(path):
-        return reversePath(request, path, branch)
+        return reverse_path(request, path, branch)
 
 
-def getNavigationProperties(request):
+def get_navigation_properties(request):
     """
-    Добавляет в контекст свойства раздела
+    Add to context subdivisions properties
     """
     if request.META['PATH_INFO'] in ['', '/']:
         pathAsList = ['/', ]
     else:
         pathAsList = [p for p in request.META['PATH_INFO'].split('/') if p]
-    branch = reversePath(request, pathAsList, [])
+    branch = reverse_path(request, pathAsList, [])
 
     if len(branch):
         return {

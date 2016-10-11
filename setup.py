@@ -11,6 +11,8 @@ AUTHOR_EMAIL = "maximprokopenko@gmail.com"
 NAME = "django-site-navigation"
 PACKAGE = 'navigation'
 VERSION = __import__(PACKAGE).__version__
+URL = 'https://bitbucket.org/mprokopenko/django-site-navigation'
+
 
 setup(
     name=NAME,
@@ -19,6 +21,7 @@ setup(
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
+    url=URL,
     install_requires=[
         'django',
         'django-modeltranslation',

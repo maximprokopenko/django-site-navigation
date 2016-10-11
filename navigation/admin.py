@@ -7,8 +7,8 @@ import navigation.translation
 
 
 class AdminSubdivision(TranslationAdmin):
-    list_display = ('name', 'parent', 'priority', 'address', 'pageview', 'show', 'published')
-    list_editable = ['parent', 'priority', 'address', 'pageview', 'show', 'published']
+    list_display = ('name', 'parent', 'priority', 'address', 'pageView', 'show', 'published')
+    list_editable = ['parent', 'priority', 'address', 'pageView', 'show', 'published']
 '''
     class Media:
         js = (

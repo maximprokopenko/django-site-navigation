@@ -17,12 +17,12 @@ INSTALLED_APPS = (
 ```
 
 
-* add "site_navigation.context_processors.getNavigationProperties" to your TEMPLATE_CONTEXT_PROCESSORS:
+* add "site_navigation.context_processors.get_navigation_properties" to your TEMPLATE_CONTEXT_PROCESSORS:
 
 ```python
 TEMPLATE_CONTEXT_PROCESSORS = (
     ...
-    'site_navigation.context_processors.getNavigationProperties'
+    'site_navigation.context_processors.get_navigation_properties'
 )
 ```
 
@@ -38,8 +38,8 @@ MIDDLEWARE_CLASSES = (
 * add in urls.py:
 
 ```python
-from navigation.utils import addUrl
-urlpatterns += addUrl('default_page.html')
+from navigation.utils import navigation_urls
+urlpatterns += navigation_urls('default_page.html')
 ```
 
 * create table:
@@ -105,7 +105,7 @@ menu.html
 
     {% for sub in subdivisions|dictsortreversed:"priority" %}
         <li {% if sub == NAVIGATION_SUBDIVISION %} class="active" {% endif %}>
-            <a href="{{ sub.getUrl }}" >
+            <a href="{{ sub.get_url }}" >
                 {{ sub }}
             </a>
         </li>
@@ -121,7 +121,7 @@ breadcrumbs.html
         <li><a href="/">Home</a></li>
         {% for s in NAVIGATION_BRANCH %}
             <li>{% if not forloop.last %}
-                    <a href="{{ s.getUrl }}">{{ s.name }}</a>
+                    <a href="{{ s.get_url }}">{{ s.name }}</a>
                  {% else %}
                     {{ s.name }}
                  {% endif %}

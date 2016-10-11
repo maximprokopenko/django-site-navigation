@@ -32,6 +32,3 @@ def breadcrumbs(context, template='breadcrumbs.html'):
                              'NAVIGATION_SUBDIVISION': context.get('NAVIGATION_SUBDIVISION'),
                              'NAVIGATION_BRANCH': context.get('NAVIGATION_BRANCH')}))
 
-@register.simple_tag(takes_context=True)
-def sitemap(context, model, filter, template):
-    pass
